@@ -1,3 +1,27 @@
+const someData = ['foo', 'bar', 'baz', 'fizz'] //this is raw data from data server
+// someData.forEach(str =>{
+//   const div = divMaker(str, 'grey'); //floating in memory at this moment
+//   document.body.prepend(div); //attach to the body at this moment
+//   console.log(div);
+// })
+
+function divMaker(text, color){ //COMPONENT takes raw data, returns DOM elements
+  const theNewDiv = document.createElement('div'); //instantiation
+  theNewDiv.classList.add('nice-div'); //adding attributes, we can also style .nice-div in css file
+  theNewDiv.textContent = text; //adding text
+  theNewDiv.style.color = color; //adding inline style
+  return theNewDiv; //RETURN
+}
+// function DivMaker(data){
+//   const {text,color} = data;
+//   return <div style = {{color:color}} > {text}</div>
+// } //React component, touch on later
+
+const div = divMaker('lambda', 'red');
+const div2 = divMaker('web', 'green');
+// document.body.prepend(div);
+// document.body.prepend(div2);
+
 // TASK 0- Motivate demoing a small makeImage component
 //  that takes an { imgURL } and returns an img element.
 //  Then loop over these URLs making images as you go:
@@ -7,12 +31,33 @@ const imageData = [
   { imageURL: 'https://images.dog.ceo/breeds/mastiff-bull/n02108422_2947.jpg' },
 ]
 
+function imageMaker(imageURL){
+  const image = document.createElement('img');
+  // image.src = imageURL;
+  image.setAttribute('src', imageURL);
+  return image;
+}
+
+// function Image(data){
+//   return <img src={data.src} />
+// }  //React component, touch on later
+
+// imageData.forEach(imgURL =>{
+//   const img = imageMaker(imgURL.imageURL); //img = imageMaker(), not img.src = imageMaker(), because imageMaker() returns an image itself
+//   document.body.appendChild(img);
+//   console.log(img);
+// })
+ 
 
 // TASK 1- Import the data we need to "hydrate" our component.
 //  On the one hand, the default export from data/panelData.js
 //  On the other hand, the default export from data/constants.js
 //  Destructure `open` and `close` from the constants
 
+import panelData from './data/panelData'
+import constants from './data/constants'
+// console.log(panelData)
+// console.log(constants)
 
 // TASK 2- Verify our imports using log statements
 console.log() // log the panelData
