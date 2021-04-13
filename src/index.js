@@ -115,26 +115,34 @@ function makePanel(title, content/* what data does the panel need? */) {
 
   // TASK 7- Add proper class names to our elements (See index.html for reference)
   // paying attention to the elements that need to start out hidden
- panel.classList.add('panel');
- panelBar.classList.add('panel-bar');
- panelContent.classList.add('panel-content');
- panelButtons.classList.add('panel-buttons');
- openButton.classList.add('panel-btn-open');
-closeButton.classList.add('anel-btn-close','hide-btn');
+  panel.classList.add('panel');
+  panelBar.classList.add('panel-bar');
+  panelContent.classList.add('panel-content');
+  panelButtons.classList.add('panel-buttons');
+  openButton.classList.add('panel-btn-open');
+  closeButton.classList.add('anel-btn-close','hide-btn');
 
 
   // TASK 8- Set text content using arguments as raw material
   //  and also using the open and close arrows imported at the top of the file
 
+  panelContent.textContent = content;
+  panelTitle.textContent = title;
+  openButton.textContent = open;
+  closeButton.textContent = close;
 
-  
 
 
   // TASK 9- When the 'open' or 'close' buttons are clicked, the content is toggled on/off:
   //  - the open button needs to go away (the 'hide-btn' class name controls this)
   //  - the close button needs to show (the 'hide-btn' class name controls this)
   //  - the contents need to show (the 'toggle-on' class name controls this)
-
+  
+  panelButtons.addEventListener('click', (event) =>{
+    openButton.classList.toggle('hide-btn');
+    closeButton.classList.toggle('hide-btn');
+    panelContent.classList.toggle('toggle-on')
+  })
 
   // don't forget to return the panel!
   return panel;
@@ -144,6 +152,10 @@ console.log(makePanel('the title', 'the content'));
 // TASK 10- Loop through the panelData we imported from the data folder
 //  creating panels for each content and title and append them to the DOM.
 //  We can do this with a single forEach, or with a map and a forEach.
+panelData.forEach(data =>{
+  const panel = makePanel(data.title, data.content);
+  accordion.appendChild(panel);
+}) 
 
 
 // [STRETCH] Comment out the links inside the nav and
